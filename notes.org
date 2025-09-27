@@ -1,0 +1,41 @@
+#+title: Game 02 notes
+
+* Brainstorm:
+** top down shooter
+
+* Goals [3/7]:
+** [X] [#A] move in 8 directions
+** [X] [#A] change direction of character
+*** direction of mouse
+** [ ] [#A] shoot[4/4]
+*** [X] invisible or prefab of bullet/projectile
+*** [X] anchored on a area of the character despite direction facing
+*** [X] go in the direction of the character and keep going until hit enemy or wall
+*** [X] character input and create copy of bullet and bullet move foward
+** [ ] [#B] enemies [4/7]
+*** [X] make enemy template
+*** [X] tag enemy in enemy group
+*** [X] collision with bullet and enemy
+*** [X] enemy move towards player
+*** [ ] player/enemy health and damage [/]
+**** DONE player and enemy have health
+**** [ ] bullet damage
+***** TODO [#A] bullet checks if enemy has function "take_damage(self, damage)"
+**** [ ] enemy take damage
+***** "On the process_damage function I recommend getting one thing to work, at a time. And the reason for passing in the source as an argument is so you can check things like direction_to() to get the proper knockback effect you're going for."
+***** need to figure out how to send signals within a script
+**** [ ] player take damage
+*** [ ] enemy knocked back a bit by bullet?
+*** [ ] spawner
+** [ ] [#B] tilemap
+** [X] [#C] dash
+
+* Notes:
+** General Knowledge:
+*** CharacterBody2D is for physics and collisions
+*** Area2D is just for checking if the Area overlaps with something else
+*** Godot uses method instead of function for
+** Transform:
+*** was kinda confused about tutorial using Transform.x * speed * delta for its calculations
+**** basically since the bullet instance is anchored to the player, it's always on the x-axis no matter the direction or position of the player node
+**** to the bullet node, whatever direction the player is facing in, that is the positive x direction

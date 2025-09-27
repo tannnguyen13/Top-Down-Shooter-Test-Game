@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://b2vwkrqad5hyj"]
+
+[ext_resource type="Script" path="res://sprite_movement_controller.gd" id="1_ihy6f"]
+[ext_resource type="Script" path="res://bullet_script.gd" id="2_ogp13"]
+
+[sub_resource type="Gradient" id="Gradient_ra4r7"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cyuan"]
+gradient = SubResource("Gradient_ra4r7")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2woel"]
+size = Vector2(64, 64)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_8g4hq"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_c4p0n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l5jsw"]
+size = Vector2(10, 10)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_3oc0j"]
+specular_color = Color(1, 0, 0, 1)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="player" type="CharacterBody2D" parent="." groups=["player"]]
+position = Vector2(585, 299)
+script = ExtResource("1_ihy6f")
+
+[node name="Sprite2D" type="Sprite2D" parent="player"]
+texture = SubResource("GradientTexture2D_cyuan")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
+shape = SubResource("RectangleShape2D_2woel")
+
+[node name="bullet spawn point" type="Node2D" parent="player"]
+position = Vector2(40, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="player/bullet spawn point"]
+visible = false
+scale = Vector2(10, 10)
+texture = SubResource("CanvasTexture_8g4hq")
+
+[node name="Bullet" type="Area2D" parent="." groups=["projectiles"]]
+position = Vector2(684, 337)
+script = ExtResource("2_ogp13")
+
+[node name="Sprite2D" type="Sprite2D" parent="Bullet"]
+scale = Vector2(10, 10)
+texture = SubResource("CanvasTexture_c4p0n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bullet"]
+shape = SubResource("RectangleShape2D_l5jsw")
+
+[node name="enemy" type="CharacterBody2D" parent="." groups=["enemy"]]
+position = Vector2(1063, 343)
+
+[node name="Sprite2D" type="Sprite2D" parent="enemy"]
+modulate = Color(1, 0, 0, 1)
+scale = Vector2(64, 64)
+texture = SubResource("CanvasTexture_3oc0j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy"]
+shape = SubResource("RectangleShape2D_2woel")

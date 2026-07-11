@@ -2,10 +2,11 @@ extends Area2D
 
 @export var speed = 700
 @export var output_damage = 1
-@export var knockbackForce = 0.5
+@export var knockbackForce = 100
+@export var knockbackTime = 0.1
 @export var valid_hit_groups = ["enemy"]
 
-signal hit(source_position: Vector2, knockbackForce: float, output_damage: int)
+signal hit(source_position: Vector2, knockbackForce: float, output_damage: int, knockbackTime: float)
 
 
 
@@ -29,7 +30,7 @@ func _on_Bullet_entered_body(body):
 				target_curr_state = target_curr_state.get_node(str(target_curr_state.state.name))
 				if target_curr_state && target_curr_state.has_method("take_damage"):
 					hit.connect(target_curr_state.take_damage)
-					hit.emit(global_position, knockbackForce, output_damage)
+					hit.emit(global_position, knockbackForce, output_damage, knockbackTime)
 			
 			#body.take_damage(self, output_damage, knockbackForce)
 		self.queue_free()

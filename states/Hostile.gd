@@ -11,7 +11,7 @@ func update(_delta: float) -> void:
 	enemy.rotation = (enemy.player.global_position - enemy.global_position).angle()
 	enemy.position += enemy.transform.x * enemy.SPEED * _delta
 
-func take_damage(source_position: Vector2, knockbackForce: float, output_damage: int):
-	print("hit")
-	var return_data = {"source":source_position, "knockback":knockbackForce, "damage":output_damage}
+func take_damage(source_position: Vector2, knockbackForce: float, output_damage: int, knockbackTime: float):
+	print("i got hitted")
+	var return_data = {"source":source_position, "knockback":knockbackForce, "damage":output_damage, "duration": knockbackTime}
 	finished.emit(DAMAGED, return_data)

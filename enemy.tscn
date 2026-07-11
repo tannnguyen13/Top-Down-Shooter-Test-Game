@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dixckp0kp8xxx" path="res://enemy.gd" id="1_qi2p4"]
 [ext_resource type="Script" uid="uid://b07jyaa7xmo7e" path="res://StateMachine.gd" id="2_iifgy"]
 [ext_resource type="Script" uid="uid://bb4gbekbkwp15" path="res://states/Hostile.gd" id="3_epg4t"]
-[ext_resource type="Script" uid="uid://bwxa41mj81gl0" path="res://damaged.gd" id="4_iifgy"]
+[ext_resource type="Script" uid="uid://bwxa41mj81gl0" path="res://states/damaged.gd" id="4_iifgy"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_qi2p4"]
 
@@ -21,8 +21,9 @@ texture = SubResource("CanvasTexture_qi2p4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_2woel")
 
-[node name="State Machine" type="Node" parent="."]
+[node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_iifgy")
+initial_state = NodePath("Hostile")
 
 [node name="Hostile" type="Node" parent="State Machine" groups=["enemy"]]
 script = ExtResource("3_epg4t")
@@ -30,5 +31,5 @@ script = ExtResource("3_epg4t")
 [node name="Damaged" type="Node" parent="State Machine"]
 script = ExtResource("4_iifgy")
 
-[node name="Timer" type="Timer" parent="State Machine/Damaged"]
-wait_time = 0.5
+[node name="Damaged_Timer" type="Timer" parent="State Machine/Damaged"]
+wait_time = 0.107

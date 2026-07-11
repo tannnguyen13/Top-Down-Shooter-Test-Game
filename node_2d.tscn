@@ -1,40 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://b2vwkrqad5hyj"]
+[gd_scene load_steps=3 format=3 uid="uid://b2vwkrqad5hyj"]
 
-[ext_resource type="Script" uid="uid://bvdgvvbfwc2jp" path="res://sprite_movement_controller.gd" id="1_ihy6f"]
-[ext_resource type="PackedScene" uid="uid://dyhi1wr5y3obd" path="res://bullet.tscn" id="2_f5qqj"]
+[ext_resource type="PackedScene" uid="uid://byejlx3t1lumj" path="res://player.tscn" id="1_0e48y"]
 [ext_resource type="PackedScene" uid="uid://b4xi006gyjsgg" path="res://enemy.tscn" id="3_epypp"]
-
-[sub_resource type="Gradient" id="Gradient_ra4r7"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_cyuan"]
-gradient = SubResource("Gradient_ra4r7")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2woel"]
-size = Vector2(64, 64)
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_8g4hq"]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Player" type="CharacterBody2D" parent="." groups=["player"]]
+[node name="Player" parent="." instance=ExtResource("1_0e48y")]
 position = Vector2(585, 299)
-script = ExtResource("1_ihy6f")
-Bullet = ExtResource("2_f5qqj")
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
-texture = SubResource("GradientTexture2D_cyuan")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-shape = SubResource("RectangleShape2D_2woel")
-
-[node name="bullet_spawn_point" type="Node2D" parent="Player"]
-position = Vector2(40, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="Player/bullet_spawn_point"]
-visible = false
-scale = Vector2(10, 10)
-texture = SubResource("CanvasTexture_8g4hq")
-
-[node name="Enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_epypp")]
+[node name="Enemy" parent="." instance=ExtResource("3_epypp")]
 position = Vector2(585, 152)
-player = NodePath("../Player")

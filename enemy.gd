@@ -1,7 +1,7 @@
 class_name Enemy extends CharacterBody2D
 
 
-@export var health = 3
+@export var health = 10
 @export var SPEED = 200.0
 
 var player : CharacterBody2D

@@ -22,11 +22,11 @@ func _physics_process(delta):
 func _on_Bullet_entered_body(body):
 	for target_group in valid_hit_groups:
 		if body.is_in_group(target_group):
-			print("hit valid target, target group in: " + target_group)
+			#print("hit valid target, target group in: " + target_group)
 			var target_curr_state = body.get_node("State Machine")
 			if target_curr_state:
-				print("\tFound target's State Machine")
-				print("\t"+target_curr_state.state.name)
+				#print("\tFound target's State Machine")
+				#print("\t"+target_curr_state.state.name)
 				target_curr_state = target_curr_state.get_node(str(target_curr_state.state.name))
 				if target_curr_state && target_curr_state.has_method("take_damage"):
 					hit.connect(target_curr_state.take_damage)

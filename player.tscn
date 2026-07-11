@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://byejlx3t1lumj"]
+[gd_scene format=3 uid="uid://byejlx3t1lumj"]
 
 [ext_resource type="Script" uid="uid://b5ikkc30gqf8u" path="res://Player.gd" id="1_onrkg"]
 [ext_resource type="PackedScene" uid="uid://dyhi1wr5y3obd" path="res://bullet.tscn" id="2_i3pqv"]
@@ -15,29 +15,38 @@ size = Vector2(64, 64)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_8g4hq"]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("bullet_spawn_point") groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1675075760 node_paths=PackedStringArray("bullet_spawn_point") groups=["player"]]
 script = ExtResource("1_onrkg")
 Bullet = ExtResource("2_i3pqv")
 bullet_spawn_point = NodePath("bullet_spawn_point")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1227355128]
 texture = SubResource("GradientTexture2D_cyuan")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=285424836]
 shape = SubResource("RectangleShape2D_2woel")
 
-[node name="bullet_spawn_point" type="Node2D" parent="."]
+[node name="bullet_spawn_point" type="Node2D" parent="." unique_id=501472989]
 position = Vector2(40, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="bullet_spawn_point"]
+[node name="Sprite2D" type="Sprite2D" parent="bullet_spawn_point" unique_id=578935818]
 visible = false
 scale = Vector2(10, 10)
 texture = SubResource("CanvasTexture_8g4hq")
 
-[node name="State Machine" type="Node" parent="."]
+[node name="State Machine" type="Node" parent="." unique_id=601803842]
 script = ExtResource("3_i3pqv")
 
-[node name="Action" type="Node" parent="State Machine"]
+[node name="Action" type="Node" parent="State Machine" unique_id=1581632203]
 script = ExtResource("4_hqtel")
 
-[node name="Shoot_Timer" type="Timer" parent="State Machine/Action"]
+[node name="Shoot_Timer" type="Timer" parent="State Machine/Action" unique_id=1812462536]
+wait_time = 0.67
+one_shot = true
+
+[node name="Dash_Cooldown" type="Timer" parent="State Machine/Action" unique_id=359107300]
+wait_time = 0.449
+
+[node name="Damaged" type="Node" parent="State Machine" unique_id=1218887555]
+
+[node name="Dash" type="Node" parent="State Machine" unique_id=446365419]

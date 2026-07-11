@@ -1,10 +1,12 @@
 extends Player_State
 
 var shoot_timer: Timer
+var dash_cooldown : Timer
 
 func _ready() -> void:
 	super._ready()
 	shoot_timer = get_node("Shoot_Timer")
+	dash_cooldown = get_node("Dash_Cooldown")
 
 # parameters are interesting, previous_state_path probably could come in handy when behaviors differ
 # based on the previous state,
@@ -25,7 +27,7 @@ func handle_input(_event: InputEvent) -> void:
 
 # clean up before actually switching the state
 func exit()-> void:
-	pass
+	player.velocity = Vector2(0, 0)
 	
 # call this in the main state controller process; pass in that _delta function
 
@@ -48,4 +50,9 @@ func _input_shoot():
 		var b = player.Bullet.instantiate()
 		player.owner.add_child(b)
 		b.global_transform = player.bullet_spawn_point.global_transform
-		shoot_timer.start(player.shoot_cooldown)
+		shoot_timer.start()
+
+func _input_dash():
+	if Input.is_action_pressed("dash") and dash_cooldown.is_stopped():
+		pass
+	pass
